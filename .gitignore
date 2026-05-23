@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+conda-meta/
+
+# Large data files
+data/raw/*
+data/processed/*
+!data/README.md
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.csv
+*.parquet
+*.pkl
+*.joblib
+
+# Outputs/models
+outputs/models/
+outputs/**/*.pkl
+outputs/**/*.joblib
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# LaTeX build files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
