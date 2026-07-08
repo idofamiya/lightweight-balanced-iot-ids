@@ -1,0 +1,7 @@
+Seed,Model,Drift Points,Retrain Points,Number of Drift Points,Number of Retrain Points
+42,ADWIN-Monitored RF Top-15,"[75103, 81375]",[],2,0
+42,Drift-Triggered RF Top-15,"[75103, 80063, 81247]","[76000, 81000, 82000]",3,3
+43,ADWIN-Monitored RF Top-15,"[55007, 80543]",[],2,0
+43,Drift-Triggered RF Top-15,"[55007, 88255]","[56000, 89000]",2,2
+44,ADWIN-Monitored RF Top-15,"[43103, 80063]",[],2,0
+44,Drift-Triggered RF Top-15,"[43103, 80223, 81759]","[44000, 81000, 82000]",3,3

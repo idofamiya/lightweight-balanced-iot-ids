@@ -1,150 +1,83 @@
 # Lightweight Balanced IoT IDS
 
-This repository contains the source code, experimental workflow, result templates, and paper files for the research article:
+This repository contains reproducible code and experimental artefacts for a lightweight intrusion detection framework for resource-constrained IoT networks.
 
-**A Lightweight Balanced Random Forest Intrusion Detection System Using Statistical and Flow-Based Features for Resource-Constrained IoT Networks**
+## Updated Study Direction
 
-## Overview
+The project has been extended from a static lightweight IDS into:
 
-This project evaluates a lightweight and class-balanced Random Forest Intrusion Detection System (IDS) using the CICIoT2023 dataset. The main experiment constructs a balanced binary dataset with 100,000 benign and 100,000 attack samples, applies Random Forest feature importance, and compares full-feature and reduced-feature models.
+**L-CDAIDS: A Lightweight Concept-Drift-Aware Intrusion Detection Framework for Resource-Constrained IoT Networks**
 
-The final binary IDS result reported in the paper is:
+The extended framework combines:
 
-- **RF Top-15 accuracy:** 98.85%
-- **RF Top-15 F1-score:** 98.84%
-- **False positives:** 17 out of 20,000 benign test samples
-- **Approximate FPR:** 0.085%
-- **Feature reduction:** 61.54% compared with the full 39-feature baseline
-
-An extended multiclass attack-category analysis is also included.
-
-## Dataset
-
-The CICIoT2023 dataset is **not included** in this repository due to its large size and redistribution considerations.
-
-Please download it from the official Canadian Institute for Cybersecurity, University of New Brunswick page:
-
-https://www.unb.ca/cic/datasets/iotdataset-2023.html
-
-After downloading, place the merged CSV files in:
-
-```text
-data/raw/
-```
-
-The preprocessing scripts expect the raw merged CICIoT2023 CSV files to be available in this folder.
+- balanced binary IDS evaluation,
+- Top-15 flow/statistical feature reduction,
+- Random Forest based lightweight detection,
+- ADWIN-based concept-drift monitoring,
+- drift-triggered Random Forest retraining using a recent traffic window,
+- phase-wise evaluation under a controlled evolving IoT traffic stream.
 
 ## Repository Structure
 
 ```text
-lightweight-balanced-iot-ids/
-├── README.md
-├── requirements.txt
-├── LICENSE
-├── .gitignore
-├── data/
-│   ├── raw/               # Place raw CICIoT2023 merged CSV files here
-│   ├── processed/          # Generated processed files; ignored by Git
-│   └── sample/             # Optional tiny sample file for demonstration
-├── src/
-│   ├── preprocessing_balanced.py
-│   ├── classifier_comparison.py
-│   └── multiclass_attack_classification.py
-├── notebooks/
-│   └── experimental notebooks
-├── results/
-│   └── CSV result tables
-├── figures/
-│   └── preprocessing_workflow.png
-├── paper/
-│   ├── main.tex
-│   ├── references.bib
-│   └── IoT_IDS_final_journal_ready.pdf
-└── outputs/
-    └── generated output files
+notebooks/
+  concept_drift_iot_ids_notebook_corrected.ipynb
+
+results/
+  concept_drift/
+    concept_drift_model_comparison.csv
+    concept_drift_model_comparison_with_rf_retraining.csv
+    final_comparison_full39_top15_drift_rf.csv
+    phasewise_three_seed_results_summary.csv
+    phasewise_three_seed_results_paper_table.csv
+    phasewise_three_seed_events.csv
+    three_seed_drift_experiment_summary.csv
+    three_seed_drift_experiment_raw.csv
+    three_seed_drift_retraining_events.csv
+
+figures/
+  preprocessing_workflow.png
+  rf_top15_drift_monitoring.png
+  phasewise_f1_comparison.png
+  phasewise_mcc_comparison.png
+
+docs/
+  CODE_AVAILABILITY.md
+  UPDATE_NOTES.md
 ```
 
-## Installation
+## Dataset
 
-Create a Python environment and install dependencies:
+The experiments are based on CICIoT2023. The dataset is not redistributed in this repository. Users should download the dataset from the official Canadian Institute for Cybersecurity / UNB source and update the local paths in the notebook.
+
+## Important Methodological Note
+
+The concept-drift experiment uses a **controlled concept-drift simulation** by constructing an evolving stream from processed CICIoT2023 test data and introducing progressive covariate shifts across phases. It should not be described as naturally occurring chronological drift unless timestamp-based chronological ordering is separately verified.
+
+## Main Result Summary
+
+The drift-triggered RF Top-15 model improved robustness in the strongest drift phase compared with both the static Top-15 model and the static Full-39 baseline, while using only 15 features.
+
+## Requirements
+
+Recommended Python packages:
 
 ```bash
-pip install -r requirements.txt
+pip install pandas numpy scikit-learn matplotlib joblib river
 ```
 
-Recommended Python version: **3.10 or 3.11**.
+## How to Run
 
-## Suggested Execution Order
+1. Open the notebook:
 
-1. Download CICIoT2023 merged CSV files and place them in `data/raw/`.
-2. Run preprocessing:
-
-```bash
-python src/preprocessing_balanced.py
+```text
+notebooks/concept_drift_iot_ids_notebook_corrected.ipynb
 ```
 
-3. Run binary classifier comparison:
-
-```bash
-python src/classifier_comparison.py
-```
-
-4. Run multiclass attack-category analysis:
-
-```bash
-python src/multiclass_attack_classification.py
-```
-
-Alternatively, use the notebooks in the `notebooks/` folder.
-
-## Main Experimental Design
-
-### Binary IDS
-
-- Dataset: CICIoT2023
-- Files processed: 63 merged CSV files
-- Final binary sample: 200,000 records
-- Benign: 100,000
-- Attack: 100,000
-- Split: 80:20 stratified
-- Classifier: Random Forest
-- Feature configurations: Full-39, Top-5, Top-10, Top-15
-
-### Multiclass Extension
-
-Attack labels are grouped into broader categories:
-
-- BENIGN
-- DDOS
-- DOS
-- MIRAI
-- SPOOFING
-- VULNERABILITY_SCAN
-- Other
-
-A capped sampling strategy is used for extended multiclass evaluation.
-
-## Reproducibility Notes
-
-The scripts use a fixed random seed:
-
-```python
-RANDOM_STATE = 42
-```
-
-This helps reproduce train-test splits and sampling decisions. Exact results may vary slightly depending on package versions and hardware.
+2. Update the dataset paths according to your local machine.
+3. Run all cells.
+4. The result files will be generated in the output folder defined in the notebook.
 
 ## Citation
 
-If you use this repository, please cite the accompanying research article once published.
-
-## License
-
-This repository is provided for academic and research use. See `LICENSE`.
-
-## Contact
-
-Amiya Kumar Sahu  
-Department of Computer Science and Applications  
-Sambalpur University, Odisha, India
-amiyakumar20072@gmail.com
+A manuscript based on this repository is under preparation/submission. Citation details will be added after acceptance/publication.
