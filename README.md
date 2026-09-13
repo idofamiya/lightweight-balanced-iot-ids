@@ -16,7 +16,8 @@ The extended framework combines:
 - ADWIN-based concept-drift monitoring,
 - drift-triggered Random Forest retraining using a recent traffic window,
 - phase-wise evaluation under a controlled evolving IoT traffic stream,
-- an extended multiclass attack-category classification study.
+- an extended multiclass attack-category classification study,
+- corpus-scale validation (5-fold cross-validation, attack-family holdout, chronological-split) over the full 34.3M-flow CICIoT2023 release.
 
 ## Repository Structure
 
@@ -32,6 +33,11 @@ src/
   classifier_comparison.py
   multiclass_attack_classification.py              # extended multiclass attack-category study
 
+scripts/
+  # standalone, portable-path scripts for the corpus-scale, cross-validation,
+  # sensitivity, and full-replication experiments; see scripts/README.md for
+  # the full table-to-script mapping
+
 results/
   concept_drift/
     concept_drift_model_comparison.csv
@@ -43,6 +49,14 @@ results/
     three_seed_drift_experiment_summary.csv
     three_seed_drift_experiment_raw.csv
     three_seed_drift_retraining_events.csv
+
+outputs/
+  fulldata_drift/            # Tables 3, 7, 8, 10 (corpus-scale drift, chronological-split)
+  cross_validation/          # Table 6 (5-fold cross-validation)
+  arf_baseline/              # Table 11 (Adaptive Random Forest baseline)
+  concept_drift/reproduced/  # Tables 12, 13, 15, 16 (three-seed / 15-seed reconstruction)
+  concept_drift/disentangle_seed_vs_split/  # Table 14 (seed vs. split sensitivity)
+  multiclass/                # multiclass extension figures and reports
 
 figures/
   preprocessing_workflow.png
@@ -61,7 +75,7 @@ The experiments are based on CICIoT2023. The dataset is not redistributed in thi
 
 ## Important Methodological Note
 
-The concept-drift experiment uses a **controlled concept-drift simulation** by constructing an evolving stream from processed CICIoT2023 test data and introducing progressive covariate shifts across phases. It should not be described as naturally occurring chronological drift unless timestamp-based chronological ordering is separately verified.
+The concept-drift experiment uses a **controlled concept-drift simulation** by constructing an evolving stream from processed CICIoT2023 test data and introducing progressive covariate shifts across phases. It should not be described as naturally occurring chronological drift unless timestamp-based chronological ordering is separately verified. The `scripts/chrono_experiment.py` file-order experiment tests this directly over the full corpus and finds no exploitable temporal signal (see `docs/CODE_AVAILABILITY.md`, Table 10).
 
 ## Main Result Summary
 
@@ -101,7 +115,14 @@ does not reproduce the paper's tables.
 2. Outputs (per-class metrics, confusion matrices, and the paper-ready comparison table)
    are written under `outputs/multiclass/`.
 
-See `docs/CODE_AVAILABILITY.md` for the full mapping between manuscript tables and the
+### Corpus-scale, cross-validation, and sensitivity experiments
+
+1. Obtain and clean the full CICIoT2023 release into the 63 per-file parquet files
+   expected under `data/processed/full_corpus/` (see `data/README.md`).
+2. Run the relevant script from `scripts/` directly, e.g. `python3 scripts/cross_validation_tables_3_4.py`.
+3. Outputs are written under `outputs/`, matching the layout above.
+
+See `docs/CODE_AVAILABILITY.md` and `scripts/README.md` for the full mapping between manuscript tables and the
 scripts/notebooks that produced them.
 
 ## Citation
