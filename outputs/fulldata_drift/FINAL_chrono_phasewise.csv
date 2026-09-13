@@ -1,0 +1,11 @@
+,,F1,F1,F1,FPR,FPR,FPR
+Phase,,Phase 1,Phase 2,Phase 3,Phase 1,Phase 2,Phase 3
+Arm,Model,,,,,,
+chrono,AdaptiveNorm-Top15,0.8438,0.9172,0.88,0.3328,0.1779,0.2885
+chrono,DriftTriggered-Top15,0.9869,0.9869,0.9872,0.0015,0.0019,0.0018
+chrono,StaticRF-Full39,0.989,0.9888,0.9891,0.0013,0.0016,0.0013
+chrono,StaticRF-Top15,0.9885,0.9885,0.9887,0.0014,0.0016,0.0013
+random,AdaptiveNorm-Top15,0.9541,0.9741,0.958,0.0744,0.0276,0.066
+random,DriftTriggered-Top15,0.9887,0.9877,0.9881,0.0017,0.0017,0.0016
+random,StaticRF-Full39,0.9891,0.9886,0.989,0.0014,0.0015,0.0015
+random,StaticRF-Top15,0.9887,0.988,0.9885,0.0017,0.0016,0.0016
