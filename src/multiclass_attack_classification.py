@@ -96,7 +96,7 @@ print("\nSaved:", OUTPUT_DIR / "attack_category_distribution.csv")
 # Keep broad classes with at least MIN_CLASS_SAMPLES.
 # Rare categories can be merged into Other or dropped.
 MIN_CLASS_SAMPLES = 1000
-MAX_SAMPLES_PER_CLASS = 30000
+MAX_SAMPLES_PER_CLASS = 20000
 RANDOM_STATE = 42
 
 # Clean category names
