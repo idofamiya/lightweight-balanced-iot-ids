@@ -7,7 +7,7 @@ The code for the lightweight and concept-drift-aware IoT IDS experiments is avai
 The main notebook is:
 
 ```text
-notebooks/concept_drift_iot_ids_notebook_corrected.ipynb
+notebooks/concept_drift_three_seed_FULL_recovered.ipynb
 ```
 
 It contains the experimental workflow for:
