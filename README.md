@@ -15,13 +15,22 @@ The extended framework combines:
 - Random Forest based lightweight detection,
 - ADWIN-based concept-drift monitoring,
 - drift-triggered Random Forest retraining using a recent traffic window,
-- phase-wise evaluation under a controlled evolving IoT traffic stream.
+- phase-wise evaluation under a controlled evolving IoT traffic stream,
+- an extended multiclass attack-category classification study.
 
 ## Repository Structure
 
 ```text
 notebooks/
-  concept_drift_iot_ids_notebook_corrected.ipynb
+  concept_drift_three_seed_FULL_recovered.ipynb   # main notebook: three-seed, phase-wise,
+                                                    # and drift-triggered-retraining experiment
+  concept_drift_iot_ids_notebook_corrected.ipynb   # earlier single-run draft, kept for history
+  IoTIDS_balanced_classifier_comparison.ipynb
+  IoTIDS_balanced_multiclass_extension.ipynb
+
+src/
+  classifier_comparison.py
+  multiclass_attack_classification.py              # extended multiclass attack-category study
 
 results/
   concept_drift/
@@ -68,15 +77,32 @@ pip install pandas numpy scikit-learn matplotlib joblib river
 
 ## How to Run
 
+### Concept-drift experiment (three-seed, phase-wise, drift-triggered retraining)
+
 1. Open the notebook:
 
 ```text
-notebooks/concept_drift_iot_ids_notebook_corrected.ipynb
+notebooks/concept_drift_three_seed_FULL_recovered.ipynb
 ```
 
 2. Update the dataset paths according to your local machine.
 3. Run all cells.
-4. The result files will be generated in the output folder defined in the notebook.
+4. The result files will be generated in the output folder defined in the notebook (see `results/concept_drift/`).
+
+The earlier `concept_drift_iot_ids_notebook_corrected.ipynb` is a single-run draft kept
+for history; it does not contain the seed loop or drift-triggered retraining logic and
+does not reproduce the paper's tables.
+
+### Multiclass attack-category extension
+
+1. Run `src/multiclass_attack_classification.py` (or the equivalent
+   `notebooks/IoTIDS_balanced_multiclass_extension.ipynb`) after the binary preprocessing
+   pipeline has produced `data/processed/final_sample_200000.csv`.
+2. Outputs (per-class metrics, confusion matrices, and the paper-ready comparison table)
+   are written under `outputs/multiclass/`.
+
+See `docs/CODE_AVAILABILITY.md` for the full mapping between manuscript tables and the
+scripts/notebooks that produced them.
 
 ## Citation
 
