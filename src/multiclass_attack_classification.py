@@ -1,4 +1,3 @@
-
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 1
 # Load processed dataset and inspect attack-category labels
@@ -88,8 +87,6 @@ print((df_mc["Attack_Category"].value_counts(normalize=True) * 100).round(3))
 category_counts.to_csv(OUTPUT_DIR / "attack_category_distribution.csv")
 print("\nSaved:", OUTPUT_DIR / "attack_category_distribution.csv")
 
-
-
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 2
 # Build class-aware multiclass sample
@@ -128,16 +125,18 @@ print("\nClasses retained for multiclass classification:")
 print(df_valid["Attack_Category"].value_counts())
 
 # Choose a balanced sample size per class.
-# This avoids one huge class dominating macro metrics.
-min_available = df_valid["Attack_Category"].value_counts().min()
-target_per_class = min(MAX_SAMPLES_PER_CLASS, min_available)
+# Cap each class at MAX_SAMPLES_PER_CLASS instead of downsampling every
+# class to the size of the smallest one, so minority attack classes are
+# not needlessly discarded.
+target_per_class = MAX_SAMPLES_PER_CLASS
 
-print("\nTarget samples per class:", target_per_class)
+print("\nTarget samples per class (cap):", target_per_class)
 
 balanced_parts = []
 for cls, group in df_valid.groupby("Attack_Category"):
+    n_sample = min(len(group), MAX_SAMPLES_PER_CLASS)
     sampled = group.sample(
-        n=target_per_class,
+        n=n_sample,
         random_state=RANDOM_STATE,
         replace=False
     )
@@ -154,8 +153,6 @@ print(df_multi_balanced["Attack_Category"].value_counts())
 
 df_multi_balanced.to_csv(OUTPUT_DIR / "multiclass_balanced_sample.csv", index=False)
 print("\nSaved:", OUTPUT_DIR / "multiclass_balanced_sample.csv")
-
-
 
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 3
@@ -253,8 +250,6 @@ print(pd.Series(y_train_multi).value_counts().sort_index())
 
 print("\nTesting class distribution:")
 print(pd.Series(y_test_multi).value_counts().sort_index())
-
-
 
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 4
@@ -358,7 +353,6 @@ print("Multiclass models selected:")
 for name in multiclass_models_top15:
     print("-", name)
 
-
 def multiclass_roc_auc(model, Xte, yte, n_classes):
     """
     Computes multiclass ROC-AUC using one-vs-rest strategy.
@@ -395,7 +389,6 @@ def multiclass_roc_auc(model, Xte, yte, n_classes):
 
     except Exception:
         return np.nan, np.nan
-
 
 def evaluate_multiclass_model(model_name, model, Xtr, Xte, ytr, yte, feature_count):
     """
@@ -471,8 +464,6 @@ def evaluate_multiclass_model(model_name, model, Xtr, Xte, ytr, yte, feature_cou
         "Model_Size_MB": model_size_mb
     }
 
-
-
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 4 continued
 # Train full-feature and Top-15 multiclass models
@@ -547,8 +538,6 @@ display(multiclass_results_df)
 
 print("\nSaved:", OUTPUT_DIR / "multiclass_classifier_comparison.csv")
 
-
-
 # ============================================================
 # MULTICLASS EXTENSION - PHASE 5
 # Binary vs Multiclass comparison table
@@ -598,8 +587,6 @@ print("Binary vs Multiclass Summary:")
 display(binary_vs_multiclass_df)
 
 print("\nSaved:", OUTPUT_DIR / "binary_vs_multiclass_summary.csv")
-
-
 
 # ============================================================
 # Export paper-ready tables and plots
@@ -692,8 +679,6 @@ plt.show()
 print("Saved figures:")
 print(FIG_DIR / "multiclass_macro_f1_comparison.png")
 print(FIG_DIR / "multiclass_mcc_comparison.png")
-
-
 
 # ============================================================
 # Detailed report for best multiclass model
