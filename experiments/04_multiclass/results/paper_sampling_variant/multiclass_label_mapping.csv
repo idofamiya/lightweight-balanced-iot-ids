@@ -1,0 +1,8 @@
+Encoded_Label,Attack_Category
+0,BENIGN
+1,DDOS
+2,DOS
+3,MIRAI
+4,Other
+5,SPOOFING
+6,VULNERABILITY_SCAN

@@ -1,0 +1,60 @@
+{
+  "overall": {
+    "Accuracy": 0.9851416666666667,
+    "Precision": 0.9986295972728986,
+    "Recall": 0.9716166666666667,
+    "F1": 0.9849379524738758,
+    "Balanced Accuracy": 0.9851416666666667,
+    "MCC": 0.9706385076270155,
+    "FPR": 0.0013333333333333333,
+    "FNR": 0.028383333333333333,
+    "Seed": 43,
+    "Model": "Adaptive Random Forest (ARF) Top-15",
+    "Warmup Time": 306.10957169532776,
+    "Predict Time": 41.71527361869812,
+    "Learn Time": 244.10206508636475,
+    "Model Size MB": 29.98498249053955,
+    "Trees": 10
+  },
+  "phases": [
+    {
+      "Accuracy": 0.9862,
+      "Precision": 0.9989737274220033,
+      "Recall": 0.9734,
+      "F1": 0.9860210696920584,
+      "Balanced Accuracy": 0.9862,
+      "MCC": 0.9727187927335648,
+      "FPR": 0.001,
+      "FNR": 0.0266,
+      "Seed": 43,
+      "Model": "Adaptive Random Forest (ARF) Top-15",
+      "Phase": "Phase 1"
+    },
+    {
+      "Accuracy": 0.98525,
+      "Precision": 0.9990743597655045,
+      "Recall": 0.9714,
+      "F1": 0.9850428433808244,
+      "Balanced Accuracy": 0.98525,
+      "MCC": 0.9708725418719529,
+      "FPR": 0.0009,
+      "FNR": 0.0286,
+      "Seed": 43,
+      "Model": "Adaptive Random Forest (ARF) Top-15",
+      "Phase": "Phase 2"
+    },
+    {
+      "Accuracy": 0.983975,
+      "Precision": 0.9978398395309366,
+      "Recall": 0.97005,
+      "F1": 0.9837487006566438,
+      "Balanced Accuracy": 0.983975,
+      "MCC": 0.9683256004066602,
+      "FPR": 0.0021,
+      "FNR": 0.02995,
+      "Seed": 43,
+      "Model": "Adaptive Random Forest (ARF) Top-15",
+      "Phase": "Phase 3"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+Concept Drift IDS Experiment Summary
+====================================
+
+Source mode: scaled_train_test_files
+Top features: ['Number', 'ack_flag_number', 'HTTPS', 'Tot_size', 'Rate', 'Header_Length', 'IAT', 'AVG', 'ack_count', 'Variance', 'Std', 'Max', 'Tot_sum', 'Time_To_Live', 'Min']
+Stream samples used for evaluation: 120000
+Phase boundaries: [40000, 80000, 120000]
+
+Model Comparison:
+-----------------
+                     Model  Accuracy  Precision  Recall       F1  Balanced Accuracy      MCC  Drift Points Detected
+          Static RF Top-15  0.982442   0.986177  0.9786 0.982374           0.982442 0.964912                      2
+Adaptive Online SGD Top-15  0.981517   0.998688  0.9643 0.981193           0.981517 0.963605                      0
+
+Static RF drift points detected: 2
+First 20 static drift points: [2655, 81215]
+
+Adaptive online drift points detected: 0
+First 20 adaptive drift points: []
+

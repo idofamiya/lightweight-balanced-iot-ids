@@ -1,0 +1,173 @@
+{
+  "seed": 44,
+  "host": "Linux-6.18.50+rpt-rpi-v8-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "fit_top15": {
+    "wall_s": 80.96824526786804,
+    "peak_rss_mb": 499.826688,
+    "mean_rss_mb": 490.9172672397516,
+    "mean_cpu_pct": 25.308944099378884,
+    "peak_cpu_pct": 100.0,
+    "train_rows": 160000
+  },
+  "fit_full39": {
+    "wall_s": 86.49031066894531,
+    "peak_rss_mb": 530.75968,
+    "mean_rss_mb": 525.9511569860465,
+    "mean_cpu_pct": 25.317674418604653,
+    "peak_cpu_pct": 85.0,
+    "train_rows": 160000
+  },
+  "inference_top15": {
+    "wall_s": 4.987317085266113,
+    "peak_rss_mb": 580.214784,
+    "mean_cpu_pct": 24.704,
+    "batch_size": 1000,
+    "n_batches": 120,
+    "latency_ms_per_batch_mean": 41.55199483334021,
+    "latency_ms_per_batch_p95": 45.89827355005127,
+    "latency_ms_per_instance_mean": 0.04155199483334021
+  },
+  "inference_full39": {
+    "wall_s": 2.3572192192077637,
+    "peak_rss_mb": 599.068672,
+    "mean_cpu_pct": 28.6375
+  },
+  "drift_triggered_stream": {
+    "wall_s": 11.116151809692383,
+    "peak_rss_mb": 599.1424,
+    "mean_cpu_pct": 24.943636363636365,
+    "n_drift_points": 1,
+    "n_retrains": 1,
+    "retrain_events": [
+      {
+        "at_row": 82000,
+        "window_rows": 20000,
+        "wall_s": 5.714895248413086,
+        "peak_rss_mb": 599.1424,
+        "mean_cpu_pct": 25.72280701754386
+      }
+    ],
+    "retrain_wall_s_mean": 5.714895248413086,
+    "retrain_peak_rss_mb_mean": 599.1424
+  },
+  "phase_metrics": [
+    {
+      "Seed": 44,
+      "Model": "Static RF Top-15",
+      "Phase": "Phase 1",
+      "Accuracy": 0.9884,
+      "Precision": 0.9990293246142843,
+      "Recall": 0.97775,
+      "F1": 0.9882751301359478,
+      "Balanced Accuracy": 0.9884,
+      "MCC": 0.977021657621737,
+      "FPR": 0.00095,
+      "FNR": 0.02225
+    },
+    {
+      "Seed": 44,
+      "Model": "Static RF Full-39",
+      "Phase": "Phase 1",
+      "Accuracy": 0.988225,
+      "Precision": 0.9989779753692064,
+      "Recall": 0.97745,
+      "F1": 0.9880967423993531,
+      "Balanced Accuracy": 0.988225,
+      "MCC": 0.9766768119126349,
+      "FPR": 0.001,
+      "FNR": 0.02255
+    },
+    {
+      "Seed": 44,
+      "Model": "Drift-Triggered RF Top-15",
+      "Phase": "Phase 1",
+      "Accuracy": 0.9884,
+      "Precision": 0.9990293246142843,
+      "Recall": 0.97775,
+      "F1": 0.9882751301359478,
+      "Balanced Accuracy": 0.9884,
+      "MCC": 0.977021657621737,
+      "FPR": 0.00095,
+      "FNR": 0.02225
+    },
+    {
+      "Seed": 44,
+      "Model": "Static RF Top-15",
+      "Phase": "Phase 2",
+      "Accuracy": 0.98815,
+      "Precision": 0.9987229260318757,
+      "Recall": 0.97755,
+      "F1": 0.9880230442692541,
+      "Balanced Accuracy": 0.9881500000000001,
+      "MCC": 0.9765194681170842,
+      "FPR": 0.00125,
+      "FNR": 0.02245
+    },
+    {
+      "Seed": 44,
+      "Model": "Static RF Full-39",
+      "Phase": "Phase 2",
+      "Accuracy": 0.987975,
+      "Precision": 0.9987734450861144,
+      "Recall": 0.97715,
+      "F1": 0.9878434048575834,
+      "Balanced Accuracy": 0.987975,
+      "MCC": 0.9761788052997241,
+      "FPR": 0.0012,
+      "FNR": 0.02285
+    },
+    {
+      "Seed": 44,
+      "Model": "Drift-Triggered RF Top-15",
+      "Phase": "Phase 2",
+      "Accuracy": 0.98815,
+      "Precision": 0.9987229260318757,
+      "Recall": 0.97755,
+      "F1": 0.9880230442692541,
+      "Balanced Accuracy": 0.9881500000000001,
+      "MCC": 0.9765194681170842,
+      "FPR": 0.00125,
+      "FNR": 0.02245
+    },
+    {
+      "Seed": 44,
+      "Model": "Static RF Top-15",
+      "Phase": "Phase 3",
+      "Accuracy": 0.97775,
+      "Precision": 0.9765586034912718,
+      "Recall": 0.979,
+      "F1": 0.9777777777777777,
+      "Balanced Accuracy": 0.97775,
+      "MCC": 0.9555029859514966,
+      "FPR": 0.0235,
+      "FNR": 0.021
+    },
+    {
+      "Seed": 44,
+      "Model": "Static RF Full-39",
+      "Phase": "Phase 3",
+      "Accuracy": 0.98385,
+      "Precision": 0.9895780633410908,
+      "Recall": 0.978,
+      "F1": 0.9837549665543429,
+      "Balanced Accuracy": 0.98385,
+      "MCC": 0.9677662410273782,
+      "FPR": 0.0103,
+      "FNR": 0.022
+    },
+    {
+      "Seed": 44,
+      "Model": "Drift-Triggered RF Top-15",
+      "Phase": "Phase 3",
+      "Accuracy": 0.985125,
+      "Precision": 0.9967743587117915,
+      "Recall": 0.9734,
+      "F1": 0.9849485214135741,
+      "Balanced Accuracy": 0.985125,
+      "MCC": 0.970516881524471,
+      "FPR": 0.00315,
+      "FNR": 0.0266
+    }
+  ]
+}

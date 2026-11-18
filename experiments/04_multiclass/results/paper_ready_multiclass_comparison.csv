@@ -1,0 +1,8 @@
+Model,Features,Accuracy (%),Macro_F1 (%),Weighted_F1 (%),Balanced_Accuracy,MCC,ROC_AUC_Macro,Training_Time_sec,Inference_Time_sec,Model_Size_MB
+Random Forest Full-39,39,73.96,73.88,73.89,0.7395,0.6975,0.9553,0.773,0.089,22.29
+Random Forest Top-15,15,71.28,71.09,71.1,0.7127,0.6663,0.9473,0.769,0.1207,22.74
+HistGradientBoosting Top-15,15,69.65,69.63,69.64,0.6964,0.6465,0.9494,6.966,0.0734,2.42
+Extra Trees Top-15,15,69.06,68.76,68.77,0.6905,0.6415,0.9449,0.445,0.0981,37.07
+Decision Tree Top-15,15,65.8,65.53,65.54,0.6579,0.6017,0.8265,0.148,0.0014,0.26
+Logistic Regression Top-15,15,61.03,60.65,60.65,0.6103,0.5475,0.9145,0.526,0.0,0.0
+Gaussian NB Top-15,15,51.5,45.03,45.04,0.5148,0.4691,0.8985,0.0,0.014,0.0

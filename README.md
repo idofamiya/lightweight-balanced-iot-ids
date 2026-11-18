@@ -1,130 +1,88 @@
-# Lightweight Balanced IoT IDS
+# L-CDAIDS: Lightweight Concept-Drift-Aware Intrusion Detection for Resource-Constrained IoT Networks
 
-This repository contains reproducible code and experimental artefacts for a lightweight intrusion detection framework for resource-constrained IoT networks.
-
-## Updated Study Direction
-
-The project has been extended from a static lightweight IDS into:
-
-**L-CDAIDS: A Lightweight Concept-Drift-Aware Intrusion Detection Framework for Resource-Constrained IoT Networks**
-
-The extended framework combines:
+Reproducible code and experimental artefacts for a lightweight,
+concept-drift-aware intrusion detection framework for resource-constrained
+IoT networks, evaluated on CICIoT2023. The framework combines:
 
 - balanced binary IDS evaluation,
 - Top-15 flow/statistical feature reduction,
 - Random Forest based lightweight detection,
 - ADWIN-based concept-drift monitoring,
 - drift-triggered Random Forest retraining using a recent traffic window,
-- phase-wise evaluation under a controlled evolving IoT traffic stream,
+- phase-wise evaluation under a controlled, evolving IoT traffic stream,
 - an extended multiclass attack-category classification study,
-- corpus-scale validation (5-fold cross-validation, attack-family holdout, chronological-split) over the full 34.3M-flow CICIoT2023 release.
+- corpus-scale validation (5-fold cross-validation, attack-family holdout,
+  chronological-split, 100-tree robustness check) over the full
+  34.3M-flow CICIoT2023 release,
+- a comparison against an Adaptive Random Forest (river) baseline, and
+- hardware validation on a Raspberry Pi 4.
 
-## Repository Structure
+## Start here
+
+**`docs/EXPERIMENT_MAP.md`** is the authoritative mapping from every table
+and figure in the manuscript (`paper/L-CDAIDS.tex`) to the folder, script,
+or notebook that produced it. If you are trying to reproduce a specific
+result, start there.
+
+## Repository structure
 
 ```text
-notebooks/
-  concept_drift_three_seed_FULL_recovered.ipynb   # main notebook: three-seed, phase-wise,
-                                                    # and drift-triggered-retraining experiment
-  concept_drift_iot_ids_notebook_corrected.ipynb   # earlier single-run draft, kept for history
-  IoTIDS_balanced_classifier_comparison.ipynb
-  IoTIDS_balanced_multiclass_extension.ipynb
-
-src/
-  classifier_comparison.py
-  multiclass_attack_classification.py              # extended multiclass attack-category study
-
-scripts/
-  # standalone, portable-path scripts for the corpus-scale, cross-validation,
-  # sensitivity, and full-replication experiments; see scripts/README.md for
-  # the full table-to-script mapping
-
-results/
-  concept_drift/
-    concept_drift_model_comparison.csv
-    concept_drift_model_comparison_with_rf_retraining.csv
-    final_comparison_full39_top15_drift_rf.csv
-    phasewise_three_seed_results_summary.csv
-    phasewise_three_seed_results_paper_table.csv
-    phasewise_three_seed_events.csv
-    three_seed_drift_experiment_summary.csv
-    three_seed_drift_experiment_raw.csv
-    three_seed_drift_retraining_events.csv
-
-outputs/
-  fulldata_drift/            # Tables 3, 7, 8, 10 (corpus-scale drift, chronological-split)
-  cross_validation/          # Table 6 (5-fold cross-validation)
-  arf_baseline/              # Table 11 (Adaptive Random Forest baseline)
-  concept_drift/reproduced/  # Tables 12, 13, 15, 16 (three-seed / 15-seed reconstruction)
-  concept_drift/disentangle_seed_vs_split/  # Table 14 (seed vs. split sensitivity)
-  multiclass/                # multiclass extension figures and reports
-
-figures/
-  preprocessing_workflow.png
-  rf_top15_drift_monitoring.png
-  phasewise_f1_comparison.png
-  phasewise_mcc_comparison.png
-
+paper/                   LaTeX source of the manuscript, bibliography, figures
+experiments/             one folder per paper result -- see docs/EXPERIMENT_MAP.md
+  01_preprocessing/       raw CICIoT2023 -> balanced 200k binary dataset
+  02_static_baseline/     static Full-39 vs Top-15 Random Forest
+  03_cross_validation/    5-fold stratified cross-validation
+  04_multiclass/          extended multiclass attack-category classification
+  05_corpus_scale_drift/  corpus-scale covariate-shift + attack-family holdout
+  06_chronological_split/ chronological (file-order) vs. random split
+  07_three_seed_reduced_scale/  three-seed phase-wise concept-drift evaluation
+  08_disentangle_seed_vs_split/ forest-config vs. split sensitivity
+  09_arf_baseline/        Adaptive Random Forest (river) comparison
+  10_pi_hardware_validation/    Raspberry Pi 4 timing and model-size measurements
+notebooks/                legacy notebooks (see notebooks/NOTE.md)
+src/                       legacy scripts (see src/NOTE.md)
+data/                      not checked in -- see data/README.md
 docs/
-  CODE_AVAILABILITY.md
-  UPDATE_NOTES.md
+  EXPERIMENT_MAP.md         canonical table/figure -> code mapping (start here)
+  CODE_AVAILABILITY.md      code/data availability statement
+  REPRODUCTION_HISTORY.md   how the three-seed result protocols were investigated
+  UPDATE_NOTES.md           dated changelog of updates to this repository
+  FULLDATA_FINDINGS.md      findings notes from the corpus-scale drift experiments
 ```
 
 ## Dataset
 
-The experiments are based on CICIoT2023. The dataset is not redistributed in this repository. Users should download the dataset from the official Canadian Institute for Cybersecurity / UNB source and update the local paths in the notebook.
-
-## Important Methodological Note
-
-The concept-drift experiment uses a **controlled concept-drift simulation** by constructing an evolving stream from processed CICIoT2023 test data and introducing progressive covariate shifts across phases. It should not be described as naturally occurring chronological drift unless timestamp-based chronological ordering is separately verified. The `scripts/chrono_experiment.py` file-order experiment tests this directly over the full corpus and finds no exploitable temporal signal (see `docs/CODE_AVAILABILITY.md`, Table 10).
-
-## Main Result Summary
-
-The drift-triggered RF Top-15 model improved robustness in the strongest drift phase compared with both the static Top-15 model and the static Full-39 baseline, while using only 15 features.
+The experiments use CICIoT2023, which is not redistributed in this
+repository. See `data/README.md` for how to obtain it and the exact
+layout each experiment expects.
 
 ## Requirements
 
-Recommended Python packages:
-
 ```bash
-pip install pandas numpy scikit-learn matplotlib joblib river
+pip install -r requirements.txt
 ```
 
-## How to Run
+## How to run
 
-### Concept-drift experiment (three-seed, phase-wise, drift-triggered retraining)
+1. Obtain and preprocess the dataset as described in `data/README.md`.
+2. Pick the experiment you want from `docs/EXPERIMENT_MAP.md`.
+3. `cd experiments/<folder>` and follow that folder's `README.md`.
 
-1. Open the notebook:
+Every script resolves paths relative to the repository root, so it can be
+run directly from a clone (`python3 experiments/<folder>/<script>.py`)
+once the data is in place.
 
-```text
-notebooks/concept_drift_three_seed_FULL_recovered.ipynb
-```
+## Main result summary
 
-2. Update the dataset paths according to your local machine.
-3. Run all cells.
-4. The result files will be generated in the output folder defined in the notebook (see `results/concept_drift/`).
-
-The earlier `concept_drift_iot_ids_notebook_corrected.ipynb` is a single-run draft kept
-for history; it does not contain the seed loop or drift-triggered retraining logic and
-does not reproduce the paper's tables.
-
-### Multiclass attack-category extension
-
-1. Run `src/multiclass_attack_classification.py` (or the equivalent
-   `notebooks/IoTIDS_balanced_multiclass_extension.ipynb`) after the binary preprocessing
-   pipeline has produced `data/processed/final_sample_200000.csv`.
-2. Outputs (per-class metrics, confusion matrices, and the paper-ready comparison table)
-   are written under `outputs/multiclass/`.
-
-### Corpus-scale, cross-validation, and sensitivity experiments
-
-1. Obtain and clean the full CICIoT2023 release into the 63 per-file parquet files
-   expected under `data/processed/full_corpus/` (see `data/README.md`).
-2. Run the relevant script from `scripts/` directly, e.g. `python3 scripts/cross_validation_tables_3_4.py`.
-3. Outputs are written under `outputs/`, matching the layout above.
-
-See `docs/CODE_AVAILABILITY.md` and `scripts/README.md` for the full mapping between manuscript tables and the
-scripts/notebooks that produced them.
+The drift-triggered RF Top-15 model achieves a substantial, but only
+partial, recovery of detection performance on attack families withheld
+from training and introduced mid-stream (genuine concept drift), using
+only 15 features and no label access beyond the ADWIN error signal. See
+the paper (`paper/L-CDAIDS.tex`) for the full results, including a
+Raspberry Pi 4 hardware validation and a comparison against an Adaptive
+Random Forest baseline.
 
 ## Citation
 
-A manuscript based on this repository is under preparation/submission. Citation details will be added after acceptance/publication.
+A manuscript based on this repository is under review. Citation details
+will be added after acceptance/publication.

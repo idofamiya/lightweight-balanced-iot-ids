@@ -1,0 +1,184 @@
+[
+  {
+    "Seed": 42,
+    "ADWIN-Monitored drift points": [
+      82879
+    ],
+    "Drift-Triggered drift points": [
+      82879
+    ],
+    "Drift-Triggered retrain points": [
+      83000
+    ]
+  },
+  {
+    "Seed": 43,
+    "ADWIN-Monitored drift points": [
+      83295
+    ],
+    "Drift-Triggered drift points": [
+      83295
+    ],
+    "Drift-Triggered retrain points": [
+      84000
+    ]
+  },
+  {
+    "Seed": 44,
+    "ADWIN-Monitored drift points": [
+      82623
+    ],
+    "Drift-Triggered drift points": [
+      82623
+    ],
+    "Drift-Triggered retrain points": [
+      83000
+    ]
+  },
+  {
+    "Seed": 45,
+    "ADWIN-Monitored drift points": [
+      80991
+    ],
+    "Drift-Triggered drift points": [
+      80991
+    ],
+    "Drift-Triggered retrain points": [
+      81000
+    ]
+  },
+  {
+    "Seed": 46,
+    "ADWIN-Monitored drift points": [
+      81855
+    ],
+    "Drift-Triggered drift points": [
+      81855
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 47,
+    "ADWIN-Monitored drift points": [
+      80703
+    ],
+    "Drift-Triggered drift points": [
+      80703
+    ],
+    "Drift-Triggered retrain points": [
+      81000
+    ]
+  },
+  {
+    "Seed": 48,
+    "ADWIN-Monitored drift points": [
+      53471
+    ],
+    "Drift-Triggered drift points": [
+      53471
+    ],
+    "Drift-Triggered retrain points": [
+      54000
+    ]
+  },
+  {
+    "Seed": 49,
+    "ADWIN-Monitored drift points": [
+      81535
+    ],
+    "Drift-Triggered drift points": [
+      81535
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 50,
+    "ADWIN-Monitored drift points": [
+      81535
+    ],
+    "Drift-Triggered drift points": [
+      81535
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 51,
+    "ADWIN-Monitored drift points": [
+      81727
+    ],
+    "Drift-Triggered drift points": [
+      81727
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 52,
+    "ADWIN-Monitored drift points": [
+      86783
+    ],
+    "Drift-Triggered drift points": [
+      86783
+    ],
+    "Drift-Triggered retrain points": [
+      87000
+    ]
+  },
+  {
+    "Seed": 53,
+    "ADWIN-Monitored drift points": [
+      80255
+    ],
+    "Drift-Triggered drift points": [
+      80255,
+      82943
+    ],
+    "Drift-Triggered retrain points": [
+      81000,
+      83000
+    ]
+  },
+  {
+    "Seed": 54,
+    "ADWIN-Monitored drift points": [
+      81663
+    ],
+    "Drift-Triggered drift points": [
+      81663
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 55,
+    "ADWIN-Monitored drift points": [
+      81823
+    ],
+    "Drift-Triggered drift points": [
+      81823
+    ],
+    "Drift-Triggered retrain points": [
+      82000
+    ]
+  },
+  {
+    "Seed": 56,
+    "ADWIN-Monitored drift points": [
+      83743
+    ],
+    "Drift-Triggered drift points": [
+      83743
+    ],
+    "Drift-Triggered retrain points": [
+      84000
+    ]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "Seed": 53,
+  "ADWIN-Monitored drift points": [
+    80255
+  ],
+  "Drift-Triggered drift points": [
+    80255,
+    82943
+  ],
+  "Drift-Triggered retrain points": [
+    81000,
+    83000
+  ]
+}
